@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pegawai.models import pegawai, pangkat
+from pegawai.models import Pegawai, Pangkat
 # Register your models here.
 
 class PegawaiAdmin(admin.ModelAdmin):
@@ -8,6 +8,6 @@ class PegawaiAdmin(admin.ModelAdmin):
     list_filter = ('pangkat',)
     list_per_page = 5
 
-admin.site.register(pegawai, PegawaiAdmin)
-admin.site.register(pangkat)
+admin.site.register(Pegawai, PegawaiAdmin)
+admin.site.register(Pangkat)
 

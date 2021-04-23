@@ -1,13 +1,13 @@
 from django.shortcuts import render
-
+from pegawai.models import Pegawai
 # Create your views here.
 
 def pegawai(request):
-    nama = ["budi", "anto", "iwan"]
-    alamat = "air joman"
+    pgws = Pegawai.objects.all()
+    
 
     konteks = {
-        'nama':nama,
-        'alamat':alamat,
+        'pgws':pgws,
+        
     }
     return render(request, 'pegawai.html', konteks)
