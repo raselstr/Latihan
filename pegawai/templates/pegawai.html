@@ -3,11 +3,32 @@
 
 {% block content %}
 
+<div class="container">
+        <div class="row">
+                <div class="col-md-12">
+                        <table class="table table-bordered table-striped">
+                                <thead>
+                                        <tr>
+                                                <th>NIP</th>
+                                                <th>Nama</th>
+                                                <th>Jabatan</th>
+                                                <th>Pangkat</th>
 
-{% for pegawai in pgws %}
-        <li>{{ pegawai.nip }}</li>
-{% endfor %}
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        {% for pegawai in pgws %}
+                                        <tr>
+                                                <td>{{ pegawai.nip }}</td>
+                                                <td>{{ pegawai.nama }}</td>
+                                                <td>{{ pegawai.jabatan }}</td>
+                                                <td>{{ pegawai.pangkat }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                </tbody>
+                        </table>
+                </div>
+        </div>
+</div>
 
-{{ alamat }}
 {% endblock content %}
-    
