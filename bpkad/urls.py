@@ -28,4 +28,5 @@ urlpatterns = [
     path('pegawai/hapus/<int:id_pegawai>', hapus_pegawai, name='hapus_pegawai'),
     path('masuk/', LoginView.as_view(), name='masuk'),
     path('keluar/', LogoutView.as_view(next_page='masuk'), name='keluar'),
+    path('signup/', signup, name='signup'),
 ]

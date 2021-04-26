@@ -4,7 +4,28 @@ from pegawai.forms import FormPegawai
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.
+
+def signup(request):
+    if request.POST:
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "User Berhasil dibuat!")
+            return redirect('signup')
+        else:
+            messages.error(request, "Terjadi Kesalahan!")
+            return redirect('signup')
+    else:
+        form = UserCreationForm()
+        konteks = {
+            'form':form,
+        }
+    return render(request, 'signup.html', konteks)
+
+
 @login_required(login_url=settings.LOGIN_URL)
 def hapus_pegawai(request, id_pegawai):
     pegawai = Pegawai.objects.filter(id=id_pegawai)
