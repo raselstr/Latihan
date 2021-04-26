@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pegawai.views import *
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 
@@ -26,4 +26,6 @@ urlpatterns = [
     path('tambah-pegawai/', tambah_pegawai, name='tambah_pegawai' ),
     path('pegawai/ubah/<int:id_pegawai>', ubah_pegawai, name='ubah_pegawai'),
     path('pegawai/hapus/<int:id_pegawai>', hapus_pegawai, name='hapus_pegawai'),
+    path('masuk/', LoginView.as_view(), name='masuk'),
+    path('keluar/', LogoutView.as_view(next_page='masuk'), name='keluar'),
 ]
