@@ -6,6 +6,9 @@
 <div class="container">
         <div class="row">
                 <div class="col-md-12">
+                        <h3>Pegawai</h3>
+                        <a href="{% url 'tambah_pegawai' %}">Tambah Pegawai</a>
+
                         <table class="table table-bordered table-striped">
                                 <thead>
                                         <tr>
@@ -13,16 +16,43 @@
                                                 <th>Nama</th>
                                                 <th>Jabatan</th>
                                                 <th>Pangkat</th>
+                                                <th>Action</th>
 
                                         </tr>
                                 </thead>
                                 <tbody>
                                         {% for pegawai in pgws %}
                                         <tr>
-                                                <td>{{ pegawai.nip }}</td>
+                                                <td><a href="{% url 'ubah_pegawai' pegawai.id %}">{{ pegawai.nip }}</a></td>
                                                 <td>{{ pegawai.nama }}</td>
                                                 <td>{{ pegawai.jabatan }}</td>
                                                 <td>{{ pegawai.pangkat }}</td>
+                                                <td>
+                                                   <!-- <a href="{% url 'hapus_pegawai' pegawai.id %}" class = "btn btn-danger">Hapus</a>  ATAU -->
+                                                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus-{{ pegawai.id }}">Hapus</button>
+                                                </td>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="hapus-{{pegawai.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="exampleModalLabel">HAPUS</h5>
+                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              Apakah anda akan menghapus data <strong>{{ pegawai.nama | upper }}</strong> ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <a href="{% url 'hapus_pegawai' pegawai.id %}" class = "btn btn-danger">Hapus</a>
+                                                              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Batal</button>
+                                                              
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>   
+                                                <!-- endModal -->
+
+
                                         </tr>
                                         {% endfor %}
                                 </tbody>
