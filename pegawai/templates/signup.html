@@ -11,8 +11,10 @@
                     SignUp.
                     <div class="card-body">
                         {% for message in messages %}
-                            {% if message %}
-                                <div class="alert alert-success">{{ message }}</div>
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success">{{ message }}</div>    
+                            {% else %}
+                                <div class="alert alert-danger">{{ message }}</div>
                             {% endif %}
                         {% endfor %}
                         <form action="{% url 'signup' %}" method="post">

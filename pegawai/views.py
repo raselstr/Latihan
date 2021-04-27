@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-
+@login_required(login_url=settings.LOGIN_URL)
 def signup(request):
     if request.POST:
         form = UserCreationForm(request.POST)
